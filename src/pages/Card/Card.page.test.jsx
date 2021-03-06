@@ -39,7 +39,7 @@ describe('Card Component tests', () => {
                 height="90"
             />
         );
-        expect(screen.getByText('testTitle').tagName).toBe('H2');
+        expect(screen.getByText('testTitle').tagName).toBe('H3');
     });
 
     it('Card Description type', () => {
