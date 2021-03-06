@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 const Container = styled.div`
     width: 22%;
+    height: 20em;
     border-style: solid;
     margin: 1em;
     border-radius: 1em;
@@ -10,20 +11,29 @@ const Container = styled.div`
     justify-content: space-between;
     float: left;
     background-color: #d47b7b;
-    word-wrap: break-word;
+    text-overflow: ellipsis;
+    overflow: hidden;
 `;
 
-function Card({ title, description, image, width, height }) {
+function Card({ videoId, title, description, image, width, height, selectVideo }) {
     return (
-        <div>
-            <Container>
-                <center>
-                    <h2> {title} </h2>
-                    <img src={image} alt={title} width={width} height={height} />
-                    <p> {description}</p>
-                </center>
-            </Container>
-        </div>
+        <Container
+            onClick={() => {
+                const val = {
+                    videoId,
+                    title,
+                    description,
+                };
+
+                selectVideo(val);
+            }}
+        >
+            <center>
+                <h3> {title} </h3>
+                <img src={image} alt={title} width={width} height={height} />
+                <p> {description}</p>
+            </center>
+        </Container>
     );
 }
 
