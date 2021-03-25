@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import useData from '../../states/provider';
 
 const Container = styled.div`
     width: 22%;
