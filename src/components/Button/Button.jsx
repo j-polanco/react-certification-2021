@@ -2,10 +2,10 @@ import styled from 'styled-components';
 
 const Button = styled.button`
     background: transparent;
-    border: none;
+    border: 5px;
     font-size: ${(props) => props.size};
     cursor: pointer;
-    color: #919191;
+    color: #f0eeee;
 `;
 
 export default Button;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import HomePage from '.';
+import VideoListPage from '.';
 import DataProvider from '../../states/provider';
 import mockedData from '../../data/mockItems.json';
 
@@ -8,7 +8,7 @@ describe('Home Component tests', () => {
     it('Card Section Contain title', () => {
         render(
             <DataProvider response={mockedData}>
-                <HomePage />
+                <VideoListPage />
             </DataProvider>
         );
         expect(
@@ -18,7 +18,7 @@ describe('Home Component tests', () => {
     it('Card Section Contain Description', () => {
         render(
             <DataProvider response={mockedData}>
-                <HomePage />
+                <VideoListPage />
             </DataProvider>
         );
         expect(
@@ -30,7 +30,7 @@ describe('Home Component tests', () => {
     it('Card Section Contain image', () => {
         render(
             <DataProvider response={mockedData}>
-                <HomePage />
+                <VideoListPage />
             </DataProvider>
         );
         expect(
@@ -40,7 +40,7 @@ describe('Home Component tests', () => {
     it('Card Section image size width', () => {
         render(
             <DataProvider response={mockedData}>
-                <HomePage />
+                <VideoListPage />
             </DataProvider>
         );
 
@@ -51,7 +51,7 @@ describe('Home Component tests', () => {
     it('Card Section image size height', () => {
         render(
             <DataProvider response={mockedData}>
-                <HomePage />
+                <VideoListPage />
             </DataProvider>
         );
         const image = screen.getByAltText('Video Tour | Welcome to Wizeline Guadalajara');

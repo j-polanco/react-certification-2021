@@ -1,13 +1,30 @@
-import React, { createContext, useContext } from 'react';
+import React, { createContext, useContext, useReducer } from 'react';
+import { ThemeProvider, createGlobalStyle } from 'styled-components';
+import { BrowserRouter as Router } from 'react-router-dom';
+import CONSTANTS from './constants';
+import reducer from './reducer';
+
+const GlobalStyles = createGlobalStyle`body{
+    color: ${(props) => props.theme.text};
+    background-color: ${(props) => props.theme.bg};
+    transition: 0.5s;
+  }`;
 
 const initState = {
-    data: [],
-    history: [],
+    videosAvailables: [],
+    selectedTheme: CONSTANTS.themes.darkTheme,
+    selectedVideo: undefined,
+    searchValue: 'wizeline',
+    loginUser: undefined,
+    favoriteVideoList:
+        (localStorage.getItem(CONSTANTS.FAVORITE_KEY) &&
+            new Map(JSON.parse(localStorage.getItem(CONSTANTS.FAVORITE_KEY)))) ||
+        new Map(),
 };
 
 const DataContext = createContext({
-    data: [],
-    history: [],
+    state: undefined,
+    dispatch: undefined,
 });
 
 function useData() {
@@ -18,11 +35,17 @@ function useData() {
     return context;
 }
 
-function DataProvider({ response, children }) {
-    initState.data = response;
-    const [data] = [initState];
+function DataProvider({ children }) {
+    const [data, dispatch] = useReducer(reducer, initState);
 
-    return <DataContext.Provider value={{ data }}>{children}</DataContext.Provider>;
+    return (
+        <ThemeProvider theme={data.selectedTheme}>
+            <GlobalStyles />
+            <DataContext.Provider value={{ data, dispatch }}>
+                <Router>{children}</Router>
+            </DataContext.Provider>
+        </ThemeProvider>
+    );
 }
 
 export { useData };
